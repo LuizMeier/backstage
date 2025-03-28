@@ -1,0 +1,69 @@
+# Template for creating a new Azure DevOps repository and pushing a new Backstage component to it.
+
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: azure-repo-demo
+  title: Azure Repository Test
+  description: Clone and push to an Azure repository example.
+spec:
+  owner: parfuemerie-douglas
+  type: service
+
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: RG Name
+          type: string
+          description: Choose a unique resource-group name.
+
+  steps:
+    - id: cloneAzureRepo
+      name: Clone Azure Repo
+      action: azure:repo:clone
+      input:
+        remoteUrl: "https://<MY_AZURE_ORGANIZATION>@dev.azure.com/<MY_AZURE_ORGANIZATION>/<MY_AZURE_PROJECT>/_git/<MY_AZURE_REPOSITORY>"
+        branch: "main"
+        targetPath: ./sub-directory
+
+    - id: fetch
+      name: Template Skeleton
+      action: fetch:template
+      input:
+        url: https://dev.azure.com/<MY_AZURE_ORGANIZATION>/<MY_AZURE_PROJECT>/_git/<MY_AZURE_REPOSITORY>?path=/terraform/base
+        targetPath: ./sub-directory/terraform/changed
+        replace: true
+        values:
+          name: ${{ parameters.name }}
+
+    - id: pushAzureRepo
+      name: Push to Remote Azure Repo
+      action: azure:repo:push
+      input:
+        branch: <MY_AZURE_REPOSITORY_BRANCH>
+        sourcePath: ./sub-directory
+        gitCommitMessage: Add name: ${{ parameters.name }} project files
+
+    - id: pullRequestAzureRepo
+      name: Create a Pull Request to Azure Repo
+      action: azure:repo:pr
+      input:
+        sourceBranch: <MY_AZURE_REPOSITORY_BRANCH>
+        targetBranch: "main"
+        repoId: <MY_AZURE_REPOSITORY>
+        title: ${{ parameters.name }}
+        project: <MY_AZURE_PROJECT>
+        organization: <MY_AZURE_ORGANIZATION>
+        description: "This is a pull request from Backstage"
+        supportsIterations: false
+
+  output:
+    links:
+      - title: Repository
+        url: "dev.azure.com?owner=<MY_AZURE_PROJECT>&repo=<MY_AZURE_REPOSITORY>&organization=<MY_AZURE_ORGANIZATION>"
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
