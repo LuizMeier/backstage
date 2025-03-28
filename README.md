@@ -8,7 +8,7 @@ You can check my tutorials for that below:
 
 You can folow my [blog](https://blog.lmeier.net) or [Medium](https://medium.lmeier.net) for new content.
 
-This version already contains the plugins and necessary customizations to use with those 2 tools. Just change the variables in `app-config.yaml` and `examples/org.yaml` to start playing. Terraform and templates files are under `terraform` and `templates` folders.
+This version already contains the plugins and necessary customizations to be used with those 2 tools. Just change the variables in `app-config.yaml` and `examples/org.yaml` to start playing. Terraform and templates files are under `terraform` and `templates` folders.
 
 To start the app, run:
 
