@@ -8,7 +8,7 @@ You can check my tutorials for that below:
 
 You can folow my [blog](https://blog.lmeier.net) or [Medium](https://medium.lmeier.net) for new content.
 
-This version already contains the plugins and necessary customizations to use with those 2 tools. Just change the variables in `app-config.yaml` and `examples/org.yaml`
+This version already contains the plugins and necessary customizations to use with those 2 tools. Just change the variables in `app-config.yaml` and `examples/org.yaml` to start playing.
 
 To start the app, run:
 
