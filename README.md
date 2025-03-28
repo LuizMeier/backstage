@@ -6,7 +6,7 @@ You can check my tutorials for that below:
 - [Authentication on Backstage with Ms Entra ID](https://blog.lmeier.net/posts/authentication-backstage-entra-id/)
 - [Integrating Backstage and Azure DevOps](https://blog.lmeier.net/posts/integrating-backstage-azure-devops/)
 
-You can folow my [blog](https://blog.lmeier.net) or [Medium](https://medium.lmeier.net) for new content. Enjoy!
+You can folow my [blog](https://blog.lmeier.net) or [Medium](https://medium.lmeier.net) for new content.
 
 This version already contains the plugins and necessary customizations to use with those 2 tools. Just change the variables in `app-config.yaml` and `examples/org.yaml`
 
